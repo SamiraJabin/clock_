@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>stopwatch</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+           <h2 id="sw">Stopwatch</h2>
+            <p><span id="seconds">00</span> : <span id="tens">00</span></p>
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+            <button id="home"><a href="index.html">Home</a></button>
+             
+        </div>
+       
+        <script>
+            var seconds=00;
+            var tens=00;
+            var appendTens= document.getElementById("tens");
+            var appendSeconds= document.getElementById("seconds");
+            var buttonStart=document.getElementById("start");
+            var buttonStop=document.getElementById("stop");
+            var buttonReset=document.getElementById("reset");
+            var interval;
+            function starttimer(){
+                tens++;
+                if(tens<9){
+                    appendTens.innerHTML="0"+tens;
+                }
+                if(tens>9){
+                    appendTens.innerHTML=tens;
+                }
+                if(tens>99){
+                    seconds++;
+                    appendSeconds.innerHTML="0"+ seconds;
+                    tens=0;
+                    appendTens.innerHTML="0+0;"
+                }
+                if(seconds>9){
+                    appendSeconds.innerHTML=seconds;
+                }
+            }
+            buttonStart.onclick=function(){
+                interval=setInterval(starttimer);
+            };
+            buttonStop.onclick=function(){
+                clearInterval(interval);
+
+            };
+            buttonReset.onclick=function(){
+                clearInterval(interval);
+                tens="00";
+                seconds="00";
+                appendSeconds.innerHTML=seconds;
+                appendTens.innerHTML=tens;
+            };
+
+
+        </script>
+    </body>
+</html>
